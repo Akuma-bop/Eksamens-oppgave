@@ -90,3 +90,11 @@ form input {
     color: red;
 }
 
+header button {
+    background-color: #297373;
+    color: #FDFFFC;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin-left: auto;
+}
