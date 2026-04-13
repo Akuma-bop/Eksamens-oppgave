@@ -48,7 +48,6 @@ form button:hover {
 
 form {
     display: grid;
-    grid-template-columns: max-content 1fr;
     gap: 10px;
     align-items: center;
 }
@@ -96,5 +95,17 @@ header button {
     border: none;
     padding: 8px;
     cursor: pointer;
-    margin-left: auto;
+
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #444;
+  background-color: rgb(95, 95, 95);
 }

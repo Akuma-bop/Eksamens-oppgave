@@ -20,14 +20,6 @@ app.get("/", (request, response) => {
     response.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.post("/new-highscore", (request, response) => {
-    const { navn, score} = request.body;
-    db.run(
-
-        `INSERT INTO PoengTavle (Navn, Poeng) VALUES (?, ?)`,
-        [navn, score]
-     );
-});
 
 app.listen(port, () => {
     console.log(`Server kjører på http://localhost:${port}`);
