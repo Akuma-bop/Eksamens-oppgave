@@ -1,5 +1,5 @@
-import express, { response } from "express";
-import path from "path";
+import express from "express";
+import path from "node:path";
 import { db } from './db.js';
 
 import { fileURLToPath } from "url";
@@ -16,10 +16,15 @@ app.use(express.json());
 
 app.use(express.static(path.join(process.cwd(), "public")));
 
+app.use(express.static(path.join(process.cwd(), "public")));
+
 app.get("/", (request, response) => {
     response.sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get("/login", (request, response) => {
+    response.sendFile(path.join(__dirname, "oversikt.html"));
+});
 
 app.listen(port, () => {
     console.log(`Server kjører på http://localhost:${port}`);

@@ -19,12 +19,11 @@ export const db = new sqlite3.Database(dbPath, (err) => {
     }
 
     db.exec(`
-    CREATE TABLE IF NOT EXISTS "PoengTavle" (
-        "IDpt" INTEGR,
-        "Navn" TEXT,
-        "Poeng" INTEGR,
-        "Dato" TEXT,
-        PRIMARY KEY ("IDpt")
+        CREATE TABLE pcs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        modell TEXT,
+        status TEXT,
+        tilstand TEXT
     );
     `, (err) => {
         if (err) {
