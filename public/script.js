@@ -18,3 +18,43 @@ function tegnTabell(data) {
         `;
     });
 }
+
+// Modal funksjonalitet
+const modal = document.getElementById("modal");
+const leggTilBtn = document.getElementById("leggTilBtn");
+const closeBtn = document.querySelector(".close");
+const formLeggTil = document.getElementById("formLeggTil");
+
+// Åpne modal
+leggTilBtn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Lukk modal
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Lukk modal hvis man klikker utenfor
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Legg til ny PC
+formLeggTil.onsubmit = function(e) {
+    e.preventDefault();
+    
+    const nyPC = {
+        modell: document.getElementById("modell").value,
+        status: document.getElementById("status").value,
+        tilstand: document.getElementById("tilstand").value
+    };
+    
+    console.log("Ny PC lagt til:", nyPC);
+    
+    // Her kan du senere sende det til serveren
+    modal.style.display = "none";
+    formLeggTil.reset();
+}

@@ -11,10 +11,12 @@
     
     <header>
         <h1>HopFiks</h1>
-        <button type="submit">Logg ut</button>
+        <button type="submit" id="logoutBtn">Logg ut</button>
     </header>
 
     <main>
+    <button id="leggTilBtn" class="btn-leggtil">+ Legg til PC</button>
+    
     <table id="pcTable">
         <tr>
             <th>ID</th>
@@ -22,10 +24,29 @@
             <th>Status</th>
             <th>Tilstand</th>
         </tr>
-   <tbody id="data-table">
-    <button id="loadData">Last inn data</button>
-        </tbody>
-        </table>    
+        <tbody id="data-table"></tbody>
+    </table>
+
+    <!-- Modal for å legge til ny PC -->
+    <div id="modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Legg til ny PC</h2>
+            <form id="formLeggTil">
+
+                <label for="modell">Modell:</label>
+                <input type="text" id="modell" name="modell" required>
+                
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" required>
+                
+                <label for="tilstand">Tilstand:</label>
+                <input type="text" id="tilstand" name="tilstand" required>
+                
+                <button type="submit">Legg til</button>
+            </form>
+        </div>
+    </div>    
 
     </main>
 
