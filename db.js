@@ -5,7 +5,7 @@ import fs from "fs";
 sqlite3.verbose();
 
 const dbDir = path.join(process.cwd(), "database");
-const dbPath = path.join(dbDir, "highScore.db");
+const dbPath = path.join(dbDir, "pcTable.db");
 
 // Opprett mappe hvis den ikke finnes
 if (!fs.existsSync(dbDir)) {

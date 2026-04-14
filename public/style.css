@@ -62,7 +62,7 @@ form button {
     justify-self: end;
 }
 
-header { 
+h1 { 
     color: #FDFFFC;
     background-color: black;
     padding: 20px;
@@ -100,12 +100,19 @@ header button {
 
 
 table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
+
 }
 
 th, td {
   padding: 10px;
   border: 1px solid #444;
   background-color: rgb(95, 95, 95);
+}
+
+h2 {
+    color: #FDFFFC;
+    text-align: right;
+    margin-bottom: 20px;
 }
