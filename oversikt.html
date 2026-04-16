@@ -17,6 +17,8 @@
     </header>
 
     <main>
+  
+
     <button id="leggTilBtn" class="btn-leggtil">+ Legg til PC</button>
     
     <table id="pcTable">
@@ -51,6 +53,27 @@
             </form>
         </div>
     </div>    
+
+    <!-- Modal for å redigere PC -->
+    <div id="editModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="editClose">&times;</span>
+            <h2>Rediger PC</h2>
+            <form id="formRediger">
+
+                <label for="editModell">Modell:</label>
+                <input type="text" id="editModell" name="modell" required>
+                
+                <label for="editStatus">Status:</label>
+                <input type="text" id="editStatus" name="status" required>
+                
+                <label for="editTilstand">Tilstand:</label>
+                <input type="text" id="editTilstand" name="tilstand" required>
+                
+                <button type="submit">Oppdater</button>
+            </form>
+        </div>
+    </div>
 
     </main>
 

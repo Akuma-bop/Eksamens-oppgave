@@ -17,7 +17,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-
 // Opprett Express-app og sett port
 const app = express();
 const port = 3000; // Serveren kjører på port 3000
@@ -25,7 +24,6 @@ const port = 3000; // Serveren kjører på port 3000
 
 
 // Håndterer forespørsler
-
 
 app.use(express.json()); // Tolker JSON-data
 app.use(express.urlencoded({ extended: true })); // Tolker form-data
@@ -74,6 +72,7 @@ app.get("/login", requireAuth, (request, response) => {
 app.post("/login", (request, response) => {
     const { brukernavn, passord } = request.body;
 
+
     // Enkel autentisering: admin/admin
     if (brukernavn === 'admin' && passord === 'admin') {
         // Innlogging vellykket - lag session
@@ -81,6 +80,7 @@ app.post("/login", (request, response) => {
         request.session.username = 'admin';
         response.redirect("/login");
     } else {
+
         // Feil brukernavn eller passord
         response.send(`
             <h1>Innlogging feilet</h1>
@@ -92,15 +92,6 @@ app.post("/login", (request, response) => {
 
 
 
-// Håndter utlogging
-app.post("/logout", (request, response) => {
-    request.session.destroy((err) => {
-        if (err) {
-            console.error("Utloggingsfeil:", err);
-        }
-        response.redirect("/");
-    });
-});
 
 // HENT alle PC-er fra databasen
 app.get("/api/pcs", requireAuth, (req, res) => {
@@ -136,6 +127,19 @@ app.delete("/api/pcs/:id", requireAuth, (req, res) => {
             return;
         }
         res.json({ deleted: this.changes });
+    });
+});
+
+// OPPDATER en PC i databasen
+app.put("/api/pcs/:id", requireAuth, (req, res) => {
+    const id = req.params.id;
+    const { modell, status, tilstand } = req.body;
+    db.run("UPDATE pcs SET modell = ?, status = ?, tilstand = ? WHERE id = ?", [modell, status, tilstand, id], function(err) {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json({ updated: this.changes });
     });
 });
 

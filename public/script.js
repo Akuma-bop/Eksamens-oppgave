@@ -62,8 +62,22 @@ async function slettElement(id) {
 
 // FUNKSJON 4: Vis info om en PC
 
-function visInfo(id) {
-    alert(`Info om PC med ID: ${id}`);
+async function visInfo(id) {
+    try {
+        const response = await fetch(`/api/pcs`);
+        const data = await response.json();
+        const pc = data.find(p => p.id == id);
+        if (pc) {
+            document.getElementById("editModell").value = pc.modell;
+            document.getElementById("editStatus").value = pc.status;
+            document.getElementById("editTilstand").value = pc.tilstand;
+            editModal.style.display = "block";
+            // Lagre ID for oppdatering
+            formRediger.dataset.pcId = id;
+        }
+    } catch (error) {
+        console.error('Feil ved henting av PC-data:', error);
+    }
 }
 
 
@@ -77,21 +91,33 @@ const leggTilBtn = document.getElementById("leggTilBtn");
 const closeBtn = document.querySelector(".close");
 const formLeggTil = document.getElementById("formLeggTil"); 
 
+const editModal = document.getElementById("editModal");
+const editCloseBtn = document.querySelector(".editClose");
+const formRediger = document.getElementById("formRediger");
 
-// Åpne modal når man klikker på "+ Legg til PC"
+
+// Åpne modal klikker på "+ Legg til PC"
 leggTilBtn.onclick = function() {
     modal.style.display = "block";
 }
 
-// Lukk modal når man klikker X
+// Lukk modal klikker X
 closeBtn.onclick = function() {
     modal.style.display = "none";
+}
+
+// Lukk edit klikker X
+editCloseBtn.onclick = function() {
+    editModal.style.display = "none";
 }
 
 // Lukk modal hvis man klikker utenfor på bakgrunnen
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+    if (event.target == editModal) {
+        editModal.style.display = "none";
     }
 }
 
@@ -120,6 +146,38 @@ formLeggTil.onsubmit = async function(e) {
             lastInnData(); // Oppdater tabellen
         } else {
             console.error('Feil ved lagring:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Feil ved sending:', error);
+    }
+}
+
+// Oppdater PC når skjemaet er sendt
+formRediger.onsubmit = async function(e) {
+    e.preventDefault();
+    
+    const id = e.target.dataset.pcId;
+    const oppdatertPC = {
+        modell: document.getElementById("editModell").value,
+        status: document.getElementById("editStatus").value,
+        tilstand: document.getElementById("editTilstand").value
+    };
+    
+    try {
+        const response = await fetch(`/api/pcs/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(oppdatertPC)
+        });
+        
+        if (response.ok) {
+            editModal.style.display = "none";
+            formRediger.reset();
+            lastInnData(); // Oppdater tabellen
+        } else {
+            console.error('Feil ved oppdatering:', response.statusText);
         }
     } catch (error) {
         console.error('Feil ved sending:', error);
