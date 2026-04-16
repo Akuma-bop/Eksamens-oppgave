@@ -110,7 +110,6 @@ closeBtn.onclick = function() {
 
 // Lukk edit klikker X
 editCloseBtn.onclick = function() {
-    console.log("Edit close button clicked");
     editModal.style.display = "none";
 }
 
