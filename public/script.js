@@ -95,6 +95,8 @@ const editModal = document.getElementById("editModal");
 const editCloseBtn = document.querySelector(".editClose");
 const formRediger = document.getElementById("formRediger");
 
+console.log("editCloseBtn:", editCloseBtn);
+
 
 // Åpne modal klikker på "+ Legg til PC"
 leggTilBtn.onclick = function() {
@@ -108,6 +110,7 @@ closeBtn.onclick = function() {
 
 // Lukk edit klikker X
 editCloseBtn.onclick = function() {
+    console.log("Edit close button clicked");
     editModal.style.display = "none";
 }
 
