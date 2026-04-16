@@ -179,15 +179,15 @@ header button {
 
 
 table {
-  width: 80%;
-  border-collapse: collapse;
-
+  border-collapse: separate;
+  border-spacing: 5px;
 }
 
 th, td {
   padding: 10px;
   border: 1px solid #444;
   background-color: rgb(233, 228, 228);
+  width: 250px;
 }
 
 #logoutBtn {
@@ -198,3 +198,47 @@ th, td {
     cursor: pointer;
 
 }
+
+#infoBtn {
+    background-color: #878d8d;
+    color: #FDFFFC;
+    border: none;
+    width: 100px;
+}
+
+#slettBtn {
+    background-color: #ff1e00;
+    color: #FDFFFC;
+    border: none;
+    width: 100px;
+}
+
+/*INFO- og SLETT-knappene i tabellen */
+.btn-info {
+    background-color: #878d8d;
+    color: #FDFFFC;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-info:hover {
+    background-color: #6a7474;
+}
+
+.btn-slett {
+    background-color: #ff1e00;
+    color: #FDFFFC;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-slett:hover {
+    background-color: #cc1700;
+}
+

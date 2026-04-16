@@ -11,7 +11,9 @@
     
     <header>
         <h1>HopFiks</h1>
-        <button type="submit" id="logoutBtn">Logg ut</button>
+        <form action="/logout" method="post" style="display: inline;">
+            <button type="submit" id="logoutBtn">Logg ut</button>
+        </form>
     </header>
 
     <main>
@@ -23,6 +25,8 @@
             <th>Modell</th>
             <th>Status</th>
             <th>Tilstand</th>
+            <th id="infoBtn">INFO</th>
+            <th id="slettBtn">SLETT</th>
         </tr>
         <tbody id="data-table"></tbody>
     </table>
