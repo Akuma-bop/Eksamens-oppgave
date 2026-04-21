@@ -177,6 +177,18 @@ header button {
     color: red;
 }
 
+.editClose {
+    color: #FDFFFC;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.editClose:hover {
+    color: red;
+}
+
 
 table {
   border-collapse: separate;

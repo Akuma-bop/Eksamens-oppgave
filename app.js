@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true })); // Tolker form-data
 
 // Session middleware for å holde brukere innlogget
 app.use(session({
-    secret: 'hoppfiks-secret-key-2026', // Skift dette i produksjon
+    secret: 'hoppfiks-secret-key-2026', // Skift dette er ikke trygt 
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false } // Sett til true med HTTPS
@@ -93,6 +93,19 @@ app.post("/login", (request, response) => {
 
 
 
+// Håndter utlogging
+app.post("/logout", (request, response) => {
+    request.session.destroy((err) => {
+        if (err) {
+            console.error('Feil ved utlogging:', err);
+            response.status(500).send('Feil ved utlogging');
+        } else {
+            response.redirect("/");
+        }
+    });
+});
+
+
 // HENT alle PC-er fra databasen
 app.get("/api/pcs", requireAuth, (req, res) => {
     db.all("SELECT * FROM pcs", [], (err, rows) => {
@@ -119,7 +132,7 @@ app.post("/api/pcs", requireAuth, (req, res) => {
 
 // SLETT en PC fra databasen
 app.delete("/api/pcs/:id", requireAuth, (req, res) => {
-    // Hent PC-ID fra URL
+    
     const id = req.params.id;
     db.run("DELETE FROM pcs WHERE id = ?", [id], function(err) {
         if (err) {
